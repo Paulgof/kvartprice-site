@@ -3,7 +3,7 @@ import random
 
 import pandas as pd
 import joblib
-from flask import request
+from flask import request, redirect
 from flask_restful import Resource
 from tensorflow import keras
 
@@ -12,16 +12,13 @@ from constants import FILES
 model = keras.models.load_model(FILES['model'])
 transformer = joblib.load(FILES['transformer'])
 categories = joblib.load(FILES['categories'])
+statistics = joblib.load(FILES['statistics'])
 
 
 class Statistics(Resource):
     def get(self):
-        return {
-            'apartments_count': random.randint(1000, 10000),
-            'mean_price_per_sqm': random.randint(50000, 100000),
-            'most_popular_area_for_sale': random.choice(['СКМ', 'Южное', 'Гидростроителей']),
-            'last_parsing': datetime.datetime.now().strftime('%d.%m.%Y %H:%M')
-        }
+        print(statistics)
+        return statistics
 
 
 class Form(Resource):
@@ -46,7 +43,7 @@ class Form(Resource):
         pred = model.predict(df.A[:, 1:])
         pred_price = int(pred.flatten()[0]) // 100000 * 100000
 
-        return pred_price
+        return redirect('http://kvartprice.lan/prediction?predicted_price={}'.format(pred_price))
 
 
 class FormOptions(Resource):
