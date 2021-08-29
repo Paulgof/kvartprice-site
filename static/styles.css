@@ -10,4 +10,25 @@ main {
   background-color: white;
 }
 
+.statistic-description {
+  display: inline-block;
+}
+
+.statistic-description::before {
+  content: "-";
+  margin: 0 5px;
+}
+
+@media screen and (min-width: 768px) and (min-device-width: 768px) {
+
+  .statistic-description {
+    display: block;
+  }
+
+  .statistic-description::before {
+    content: "";
+    margin: 0;
+  }
+
+}
 
