@@ -8,9 +8,12 @@ async function getStatistics() {
         let statTotal = document.getElementById('statistics-total');
         let statMeanPricePerSquare = document.getElementById('statistics-mean-price');
         let statTopDistrict = document.getElementById('statistics-top-district');
-        statTotal.innerHTML = json['total_offers'] + '<div>выборка квартир</div>';
-        statMeanPricePerSquare.innerHTML = json['mean_price'] + ' ₽<div>средняя цена за кв. м.</div>';
-        statTopDistrict.innerHTML = 'в ' + json['top_offers_district']['area'] + '<div>больше всего объявлений</div>';
+        statTotal.innerHTML = '<b>' + json['total_offers'] + '</b>' +
+            '<div class="statistic-description">выборка квартир</div>';
+        statMeanPricePerSquare.innerHTML = '<b>' + json['mean_price'] + '</b>' +
+            ' ₽<div class="statistic-description">средняя цена за кв. м.</div>';
+        statTopDistrict.innerHTML = 'в <b>' + json['top_offers_district']['area'] + '</b>' +
+            '<div class="statistic-description">больше всего объявлений</div>';
 
 
     } else {
