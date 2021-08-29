@@ -1,0 +1,27 @@
+
+server {
+	listen 80;
+	listen [::]:80;
+
+	root /var/www/kvartprice;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name kvartprice www.kvartprice.info kvartprice.info kvartprice.lan;
+	add_header 'Access-Control-Allow-Origin' 'localhost';
+
+	location / {}
+}
+
+server {
+    listen 8888;
+    listen [::]:8888;
+    
+    server_name www.kvartprice.info kvartprice.info kvartprice.lan;
+    add_header 'Access-Control-Allow-Origin' '*';
+    
+    location / {
+        proxy_pass http://127.0.0.1:8080/;
+        proxy_redirect off;
+    }
+}
