@@ -43,7 +43,7 @@ class Form(Resource):
         pred = model.predict(df.A[:, 1:])
         pred_price = int(pred.flatten()[0]) // 100000 * 100000
 
-        return redirect('http://kvartprice.lan/prediction?predicted_price={}'.format(pred_price))
+        return redirect('http://kvartprice.info/prediction?predicted_price={}'.format(pred_price))
 
 
 class FormOptions(Resource):

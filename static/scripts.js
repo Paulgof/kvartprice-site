@@ -1,4 +1,4 @@
-const api_url = 'http://kvartprice.lan:8888/api';
+const api_url = 'https://kvartprice.info:8888/api';
 
 async function getStatistics() {
     let response = await fetch(api_url + '/statistics');
